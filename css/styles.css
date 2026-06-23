@@ -19,6 +19,9 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --radius: 4px;
   --header-h: 72px;
+  --ribbon-h: 44px;
+  --finance-blue: #1A4B8C;
+  --finance-blue-dark: #123566;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -129,15 +132,94 @@ ol { list-style: none; }
   transform: translateY(-1px);
 }
 
+.nav-finance {
+  padding: 0.4rem 0.75rem;
+  border: 1.5px solid var(--finance-blue);
+  border-radius: var(--radius);
+  color: var(--finance-blue) !important;
+  font-weight: 600;
+}
+.nav-finance:hover, .nav-finance:focus-visible {
+  background: var(--finance-blue);
+  color: var(--white) !important;
+}
+
 .header-rule {
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--red) 20%, var(--red) 80%, transparent);
   opacity: 0.6;
 }
 
+/* ─── Financing ribbon ─── */
+.finance-ribbon {
+  position: fixed;
+  top: calc(var(--header-h) + 2px);
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--finance-blue);
+  color: var(--white);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+.finance-ribbon-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.625rem 1.5rem;
+  min-height: var(--ribbon-h);
+}
+
+.finance-ribbon-badge {
+  flex-shrink: 0;
+  padding: 0.2rem 0.5rem;
+  background: var(--red);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.finance-ribbon-text {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+}
+.finance-ribbon-text strong { font-weight: 700; }
+
+.finance-ribbon-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  padding: 0.4rem 0.875rem;
+  background: var(--white);
+  color: var(--finance-blue);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border-radius: var(--radius);
+  transition: background 0.2s, transform 0.2s;
+}
+.finance-ribbon-cta:hover,
+.finance-ribbon-cta:focus-visible {
+  background: var(--paper);
+  transform: translateY(-1px);
+}
+.finance-ribbon-cta svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
 /* ─── Hero ─── */
 .hero {
-  padding: calc(var(--header-h) + 3rem) 1.5rem 2rem;
+  padding: calc(var(--header-h) + var(--ribbon-h) + 3rem) 1.5rem 2rem;
   max-width: 1280px;
   margin: 0 auto;
 }
@@ -393,7 +475,7 @@ ol { list-style: none; }
   color: var(--white);
   padding: 0.875rem 0;
   overflow: hidden;
-  margin: 2rem 0 4rem;
+  margin: 2rem 0 0;
 }
 
 .ticker-track {
@@ -421,6 +503,8 @@ ol { list-style: none; }
   color: var(--red);
 }
 
+.ticker-finance strong { color: #7CB9FF; }
+
 .ticker-sep {
   color: var(--red);
   font-size: 0.5rem;
@@ -429,6 +513,142 @@ ol { list-style: none; }
 
 @keyframes ticker {
   to { transform: translateX(-50%); }
+}
+
+/* ─── Financing section ─── */
+.finance-section {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 4rem 1.5rem;
+}
+
+.finance-section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .finance-section-inner {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.finance-eyebrow { color: var(--finance-blue); }
+
+.finance-title-accent { color: var(--finance-blue); }
+
+.finance-lead {
+  color: var(--slate);
+  margin-top: 1rem;
+  max-width: 52ch;
+}
+
+.finance-benefits {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-top: 1.75rem;
+}
+
+.finance-benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  font-size: 0.9375rem;
+  color: var(--slate);
+}
+
+.finance-benefit-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: rgba(26, 75, 140, 0.08);
+  color: var(--finance-blue);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-radius: var(--radius);
+  border: 1px solid rgba(26, 75, 140, 0.15);
+}
+
+.finance-actions {
+  margin-top: 2rem;
+}
+
+.btn-finance {
+  background: var(--finance-blue);
+  color: var(--white);
+}
+.btn-finance:hover,
+.btn-finance:focus-visible {
+  background: var(--finance-blue-dark);
+  transform: translateY(-1px);
+}
+.btn-finance svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.finance-disclaimer {
+  margin-top: 0.875rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.finance-stats-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.finance-stat {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.finance-stat:hover {
+  border-color: rgba(26, 75, 140, 0.25);
+  box-shadow: var(--shadow-sm);
+}
+
+.finance-stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--finance-blue);
+}
+
+.finance-stat-label {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  line-height: 1.35;
+}
+
+.finance-stat-note {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.6875rem;
+  color: var(--muted);
 }
 
 /* ─── Features Bento ─── */
@@ -824,5 +1044,17 @@ ol { list-style: none; }
   .ticker-track { animation: none; }
   .spinner { animation: none; }
   .bento-card:hover { transform: none; }
-  .btn-primary:hover:not(:disabled) { transform: none; }
+  .btn-primary:hover:not(:disabled),
+  .btn-finance:hover { transform: none; }
+  .finance-ribbon-cta:hover { transform: none; }
+}
+
+@media (max-width: 640px) {
+  .finance-ribbon-text {
+    font-size: 0.75rem;
+    flex: 1 1 100%;
+  }
+  .header-nav { gap: 0.75rem; }
+  .nav-link { font-size: 0.8125rem; }
+  .nav-finance { padding: 0.35rem 0.5rem; }
 }

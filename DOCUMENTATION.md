@@ -47,3 +47,17 @@ Static files — deploy to any host (Netlify, Vercel, S3, cPanel). Point `cmacco
 - Replace localStorage form with API endpoint
 - Add Google Analytics / Meta Pixel when ad campaigns launch
 - Swap "Coming Soon" strip for launch date when confirmed
+
+
+### Session: June 23, 2026 — Financing Addition (Fix)
+
+**Problem:** Financing HTML was deployed without matching CSS, causing unstyled SVG icons to render at full viewport size in the hero.
+
+**Fix:**
+- Removed broken hero finance card (unstyled SVGs)
+- Removed AI-generated banner image from financing section (off-brand)
+- Added complete financing CSS: ribbon, section, stats panel, nav link
+- Restored original 4-card bento grid
+- Financing touchpoints: fixed ribbon, nav link (#financing), ticker item, dedicated section, footer link
+
+**Financing URL:** Ascentium Capital partner landing page (integration.financepartners.com)

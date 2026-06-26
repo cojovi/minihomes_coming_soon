@@ -91,6 +91,74 @@
     if (statusEl) handleSubmit(form, statusEl);
   });
 
+  // A&L RV Park reservation form — real submission via FormSubmit AJAX endpoint
+  const rvForm = document.getElementById('rv-reserve-form');
+  if (rvForm) {
+    const rvStatus = rvForm.querySelector('.rv-status');
+    const rvBtn = rvForm.querySelector('button[type="submit"]');
+    const rvDateInput = rvForm.querySelector('#rv-movein');
+    const defaultMoveIn = rvDateInput ? rvDateInput.value : '2026-07-06';
+
+    rvForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = new FormData(rvForm);
+      const name = (data.get('name') || '').trim();
+      const phone = (data.get('phone') || '').trim();
+      const email = (data.get('email') || '').trim();
+      const honey = (data.get('_honey') || '').trim();
+
+      rvStatus.textContent = '';
+      rvStatus.classList.remove('success', 'error');
+
+      // Honeypot tripped — silently bail like a successful bot trap
+      if (honey) return;
+
+      if (!name) {
+        rvStatus.textContent = 'Please enter your full name.';
+        rvStatus.classList.add('error');
+        rvForm.querySelector('#rv-name').focus();
+        return;
+      }
+      if (!phone) {
+        rvStatus.textContent = 'Please enter a phone number we can reach you at.';
+        rvStatus.classList.add('error');
+        rvForm.querySelector('#rv-phone').focus();
+        return;
+      }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        rvStatus.textContent = 'Please enter a valid email address.';
+        rvStatus.classList.add('error');
+        rvForm.querySelector('#rv-email').focus();
+        return;
+      }
+
+      rvBtn.disabled = true;
+      rvBtn.classList.add('is-loading');
+
+      try {
+        const res = await fetch(rvForm.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data,
+        });
+
+        if (!res.ok) throw new Error('Request failed');
+
+        rvStatus.textContent = "You're on the list! We'll text or call you to confirm your studio reservation.";
+        rvStatus.classList.add('success');
+        rvForm.reset();
+        if (rvDateInput) rvDateInput.value = defaultMoveIn;
+      } catch {
+        rvStatus.textContent = "Something went wrong submitting the form. Please call us directly so you don't lose your spot.";
+        rvStatus.classList.add('error');
+      }
+
+      rvBtn.disabled = false;
+      rvBtn.classList.remove('is-loading');
+    });
+  }
+
   // Sync both email inputs
   const emailHero = document.getElementById('email-hero');
   const emailCta = document.getElementById('email-cta');

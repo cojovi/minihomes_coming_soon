@@ -714,6 +714,18 @@ ol { list-style: none; }
   border-color: #D88A3D;
 }
 
+.rv-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--rv-amber);
+}
+.rv-more-link svg { width: 14px; height: 14px; transition: transform 0.2s; }
+.rv-more-link:hover svg, .rv-more-link:focus-visible svg { transform: translateX(3px); }
+
 .rv-ticket {
   position: relative;
   z-index: 1;
@@ -1232,6 +1244,160 @@ ol { list-style: none; }
 
 .cta-status.success { color: #4ade80; }
 .cta-status.error { color: #fca5a5; }
+
+/* ─── Rentals page: sub-nav ─── */
+.subnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(247, 245, 242, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ─── Rentals page: hero badge reuse ─── */
+.rentals-hero { padding-top: calc(var(--header-h) + 3rem); }
+
+/* ─── Why Rent intro spacing reuse ─── */
+.why-rent { background: var(--paper); }
+
+/* ─── Expansion banner ─── */
+.expansion-section {
+  background: var(--charcoal);
+  padding: 4.5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.expansion-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(135deg, rgba(181, 101, 29, 0.05) 0px, rgba(181, 101, 29, 0.05) 2px, transparent 2px, transparent 22px);
+  pointer-events: none;
+}
+
+.expansion-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.expansion-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.875rem;
+  background: rgba(181, 101, 29, 0.16);
+  border: 1px solid rgba(181, 101, 29, 0.4);
+  color: var(--rv-amber);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  margin-bottom: 1.25rem;
+}
+
+.expansion-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 4.5vw, 2.75rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+
+.expansion-title .rv-title-accent { color: var(--rv-amber); }
+
+.expansion-lead {
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 56ch;
+  margin: 1rem auto 0;
+}
+
+.expansion-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.expansion-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.expansion-chip svg {
+  width: 16px; height: 16px;
+  color: var(--rv-amber);
+  flex-shrink: 0;
+}
+
+/* ─── FAQ ─── */
+.faq-section {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem;
+}
+
+.faq-list {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.faq-item {
+  background: var(--white);
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.faq-item:last-child { border-bottom: none; }
+
+.faq-q {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.faq-q-mark {
+  color: var(--rv-amber);
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+
+.faq-a {
+  font-size: 0.9375rem;
+  color: var(--slate);
+  margin-top: 0.625rem;
+  margin-left: 1.6rem;
+  line-height: 1.65;
+}
+
+/* ─── Rentals nav active state ─── */
+.nav-link.is-current {
+  color: var(--rv-amber);
+}
 
 /* ─── Footer ─── */
 .site-footer {

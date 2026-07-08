@@ -61,3 +61,18 @@ Static files — deploy to any host (Netlify, Vercel, S3, cPanel). Point `cmacco
 - Financing touchpoints: fixed ribbon, nav link (#financing), ticker item, dedicated section, footer link
 
 **Financing URL:** Ascentium Capital partner landing page (integration.financepartners.com)
+
+### Session: July 8, 2026 — Switch to First Citizens Equipment Finance
+
+**Change:** Replaced all Ascentium Capital / Finance Partners links and copy with CMAC’s First Citizens Equipment Finance portal.
+
+**Research notes:**
+- `https://cmac.firstcitizensef.com/` is a CMAC-co-branded First Citizens Equipment Finance application portal (online credit app). It does **not** publish productized limits such as “$2M financing,” “$400K application-only,” “$0 down,” “100% bundle,” or tax write-off claims.
+- Those figures came from the previous Ascentium marketing page and were **removed** so the site does not overstate First Citizens terms.
+- Public First Citizens Equipment Finance materials describe commercial equipment loans/leases; specific CMAC deal terms are determined in application underwriting.
+
+**Site updates:**
+- All Apply for Financing links → `https://cmac.firstcitizensef.com/`
+- Partner name → First Citizens Equipment Finance
+- Benefits + stats rewritten to process/partner facts only (no invented dollar amounts)
+- Ribbon copy no longer references Ascentium $0-down language
